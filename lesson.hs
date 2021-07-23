@@ -161,3 +161,66 @@ vscale n strArr =  concat [replicate n str | str <- strArr]
 scale :: [Char] -> Int -> Int -> [Char]
 scale "" _ _ = ""
 scale str k n = foldl1(\acc str -> acc ++ "\n" ++ str) $vscale n $ map (hscale k) (words str) 
+
+
+-- Construct an ascending order list
+asc :: Int -> Int -> [Int]
+asc a b 
+    | b < a = []
+    | b == a = [a]
+    | otherwise = a:  asc (a +1) b  
+
+-- Tail Recurrsive functions  -- Can do infinite recursions
+fact n = aux n 1 where aux n acc 
+                        | n <= 1 = acc 
+                        | otherwise = aux (n-1) $ n * acc 
+
+
+addTuples  :: [(Int, Int)] -> [Int]
+addTuples xs = [ x + y | (x, y) <- xs]
+
+
+getTupleX :: [(Int, Int)] -> [Int]
+getTupleX xs = [x | (x, _) <- xs]
+
+
+getTupleY :: [(Int, Int)] -> [Int]
+getTupleY xs = [y | (_, y) <- xs]
+
+addTuplesComponent ::  [(Int, Int)] ->  [(Int, Int)]
+addTuplesComponent n = [(x_sum, y_sum)] 
+        where 
+                x_sum = sum $getTupleX n 
+                y_sum = sum $getTupleY n
+
+-- search if a element is present in a list
+elem' :: (Eq a) => a -> [a] -> Bool 
+
+elem' _ [] = False
+elem' x (n:ns) 
+       | x == n = True  
+       | otherwise = elem' x ns 
+-- elem' x (n:ns) = x == n || elem' x ns 
+
+-- remove duplicate elements in a list
+nub' :: (Eq a) => [a] -> [a]
+nub' [] = []
+nub' (a:as) 
+      | not $elem' a as  =  a : nub' as   
+      | otherwise = nub' as 
+
+-- isAsc checks if the list is in a ascending order
+isAsc':: [Int] -> Bool 
+
+-- The first two conditions get evaluated first in the pattern matching
+isAsc' [] = True 
+isAsc' [a] = True 
+isAsc' (a:as) = a <= head as && isAsc' as  
+
+
+-- Directed cyclic graph problem - combination of all other problems
+
+hasPath :: [(Int, Int)] -> Int -> Int -> Bool 
+hasPath xy a b 
+        | a ==b = True 
+        | otherwise = elem a (getTupleX xy) && elem b (getTupleY xy)
