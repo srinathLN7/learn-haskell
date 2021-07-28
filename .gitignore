@@ -1,3 +1,2 @@
-*.env
-*.ghci
 
+.ignore/
