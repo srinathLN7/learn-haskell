@@ -95,7 +95,7 @@ firstNonConsecutive _ = Nothing -- [], [x] = Nothing -> _ represents any other c
 -- display the triplets (x,y,z) where z62 = x^2 + y^2 eg: (3,4,5)
 tripletsWithin n = [ (i-1)^2 + (i-2)^2 == i^2 | i <- [3..n]]
 
--- Defining a custom data type
+-- Defining a custom data type -- Records
 data Player = Player {team:: String, ppg:: Double } deriving (Show) -- :t team Player -> String :t ppg Player -> Double
 
 sumPpg :: Player -> Player -> Double
@@ -193,30 +193,6 @@ addTuplesComponent n = [(x_sum, y_sum)]
                 x_sum = sum $getTupleX n 
                 y_sum = sum $getTupleY n
 
--- search if a element is present in a list
-elem' :: (Eq a) => a -> [a] -> Bool 
-
-elem' _ [] = False
-elem' x (n:ns) 
-       | x == n = True  
-       | otherwise = elem' x ns 
--- elem' x (n:ns) = x == n || elem' x ns 
-
--- remove duplicate elements in a list
-nub' :: (Eq a) => [a] -> [a]
-nub' [] = []
-nub' (a:as) 
-      | not $elem' a as  =  a : nub' as   
-      | otherwise = nub' as 
-
--- isAsc checks if the list is in a ascending order
-isAsc':: [Int] -> Bool 
-
--- The first two conditions get evaluated first in the pattern matching
-isAsc' [] = True 
-isAsc' [a] = True 
-isAsc' (a:as) = a <= head as && isAsc' as  
-
 
 -- Directed cyclic graph problem - combination of all other problems
 
@@ -224,3 +200,26 @@ hasPath :: [(Int, Int)] -> Int -> Int -> Bool
 hasPath xy a b 
         | a ==b = True 
         | otherwise = elem a (getTupleX xy) && elem b (getTupleY xy)
+
+
+-- Count the number of elements in the list
+count e = foldr (\x acc -> if e == x then acc+1 else acc) 0   
+
+-- length' = foldr (const $ (+) 1) 0
+
+-- reverse a list using foldr or foldl
+rev :: [a] -> [a]
+rev = foldl (\acc x -> x : acc) []
+
+rev' :: [a] -> [a]
+rev' = foldr(\x acc -> acc ++ [x]) []
+
+-- -- display 1st n elements in a list
+-- displayFirstElements :: Int n => n -> [a] -> [a]
+-- displayFirstElements n = 
+
+
+-- display the list of prefixes of a list
+prefixes:: [a] -> [[a]]
+prefixes =  foldl (\acc x -> if null acc then [x]:acc else ( head acc ++ [x]) : acc) []
+

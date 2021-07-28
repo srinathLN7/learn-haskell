@@ -56,3 +56,28 @@ foldL fn acc (x:xs) = foldL fn (fn acc x) xs
 -- To call :  foldL (+) 0 [1,7,7]. Also foldL (\acc x -> acc + x) 0 [1,7,7] => Lambda expressions  
 -- foldL (*) 1 [1,7,7] = foldL (\acc x -> acc * x) 1 [1,7,7] => Lambda expressions
 
+
+
+-- search if a element is present in a list
+elem' :: (Eq a) => a -> [a] -> Bool 
+
+elem' _ [] = False
+elem' x (n:ns) 
+       | x == n = True  
+       | otherwise = elem' x ns 
+-- elem' x (n:ns) = x == n || elem' x ns 
+
+-- remove duplicate elements in a list
+nub' :: (Eq a) => [a] -> [a]
+nub' [] = []
+nub' (a:as) 
+      | not $elem' a as  =  a : nub' as   
+      | otherwise = nub' as 
+
+-- isAsc checks if the list is in a ascending order
+isAsc':: [Int] -> Bool 
+
+-- The first two conditions get evaluated first in the pattern matching
+isAsc' [] = True 
+isAsc' [a] = True 
+isAsc' (a:as) = a <= head as && isAsc' as  
