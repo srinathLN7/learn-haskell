@@ -56,8 +56,6 @@ foldL fn acc (x:xs) = foldL fn (fn acc x) xs
 -- To call :  foldL (+) 0 [1,7,7]. Also foldL (\acc x -> acc + x) 0 [1,7,7] => Lambda expressions  
 -- foldL (*) 1 [1,7,7] = foldL (\acc x -> acc * x) 1 [1,7,7] => Lambda expressions
 
-
-
 -- search if a element is present in a list
 elem' :: (Eq a) => a -> [a] -> Bool 
 
@@ -81,3 +79,16 @@ isAsc':: [Int] -> Bool
 isAsc' [] = True 
 isAsc' [a] = True 
 isAsc' (a:as) = a <= head as && isAsc' as  
+
+
+-- reverse a list using foldr or foldl
+rev :: [a] -> [a]
+rev = foldl (\acc x -> x : acc) []
+
+rev' :: [a] -> [a]
+rev' = foldr(\x acc -> acc ++ [x]) []
+
+-- -- display 1st n elements in a list
+-- displayFirstElements :: Int n => n -> [a] -> [a]
+-- displayFirstElements n = 
+

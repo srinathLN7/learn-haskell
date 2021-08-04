@@ -1,6 +1,6 @@
 
 import Data.List ( sort )
-import Data.Char(ord, chr)
+import Data.Char(ord, chr, toUpper)
 
 x :: [Char]
 x = "Hello Haskel!!! I am here"
@@ -207,19 +207,26 @@ count e = foldr (\x acc -> if e == x then acc+1 else acc) 0
 
 -- length' = foldr (const $ (+) 1) 0
 
--- reverse a list using foldr or foldl
-rev :: [a] -> [a]
-rev = foldl (\acc x -> x : acc) []
-
-rev' :: [a] -> [a]
-rev' = foldr(\x acc -> acc ++ [x]) []
-
--- -- display 1st n elements in a list
--- displayFirstElements :: Int n => n -> [a] -> [a]
--- displayFirstElements n = 
-
-
 -- display the list of prefixes of a list
 prefixes:: [a] -> [[a]]
 prefixes =  foldl (\acc x -> if null acc then [x]:acc else ( head acc ++ [x]) : acc) []
 
+-- IO actions
+greetIO :: IO ()
+greetIO = do 
+   putStrLn "What is your name?"
+   name <- getLine -- do :t getLine
+   putStrLn $"Hello " ++ name ++ "."
+   let uname = map toUpper name 
+   putStrLn $"WELCOME " ++ uname ++ "."
+     
+
+main :: IO ()
+main = do 
+        putStrLn "Type in something"
+        result <- getLine
+        if result /= "quit" then do 
+               putStrLn ("Input: " ++ result) 
+               main 
+        else 
+                return () 
