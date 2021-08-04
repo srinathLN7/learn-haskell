@@ -1,6 +1,8 @@
 --  A monad example that captures the idea of computations while producing log outputs
 
 import Text.Show (Show)
+import GHC.Base (Monad)
+import Control.Monad
 
 data Writer a = Writer a [String] deriving Show
 
@@ -42,3 +44,14 @@ foo'' x y z = x `bindWriter` (\k ->
             let s = k + l + m
             in tell ["sum: " ++ show s] `bindWriter` (\_ ->
                Writer s [] ))))
+
+-- Defind the Writer type as a custom monad
+instance Functor Writer where
+    fmap = liftM 
+instance Applicative Writer where
+    pure = return 
+    (<*>) = ap
+
+instance Monad Writer where
+    return a = Writer a []
+    (>>=) = bindWriter

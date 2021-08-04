@@ -1,5 +1,6 @@
 
 import Text.Read
+import Control.Concurrent (myThreadId)
 
 -- write a function that tries to parse all three Strings as Ints. 
 -- If all the Strings can be successfully parsed as Ints, then we want to add those three Ints to get a sum. 
@@ -33,3 +34,4 @@ fooPrefix' xs ys zs = bindMaybe (readMaybe xs :: Maybe Int) (\k ->
                       bindMaybe (readMaybe ys :: Maybe Int) (\l ->
                       bindMaybe (readMaybe zs :: Maybe Int) (\m ->
                       Just $ k + l+ m )))           
+
