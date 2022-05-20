@@ -1,16 +1,15 @@
 # Learn Haskell for Plutus - Cardano
 
-This repository is a collection of the list of haskell programs and lecture notes written during my adventure in learning haskell - a language used to develop smart contracts in the [cardano blockchain](https://docs.cardano.org/). The more you learn haskell, the more you fall in love with its simplicity and elegance. Being a firm believer of the philosophy "Less is more" when it comes to programming, 
-Haskell makes me go "Wowwwwww!" 
+This repository is a collection of the list of haskell programs and lecture notes written during my adventure in learning haskell - a lazy, statically typed, pure functional programming language used to develop smart contracts in the [cardano](https://docs.cardano.org/) blockchain. Being a firm believer of the philosophy "Less is more" when it comes to programming, the more I learn haskell, the more I fall in love with its simplicity and elegance. Haskell makes me go "Wowwwwww!" 
 
-**What about you? Do you like writing 1000's of lines of code or 1 line that does 1000 things?** 
+**What about you? Do you like writing 1000's of lines of code that doing 1 thing or 1 line of code doing 1000 things?** 
 
 
 ## Recommended Video Lectures and Tutorials
 
 **Prof. Graham Huttom Lecture Series - Highly Recommended**
 
-I thoroughly enjoyed wwatching Professor Graham Hutton lecture series on Functional programming in Haskell. 
+I thoroughly enjoyed watching Professor Graham Hutton lecture series on Functional programming in Haskell and would highly recommend for any haskell beginner. He explains the functional programming paradigm using the first-principles approach. 
 
 * [Functional Programming](https://www.youtube.com/playlist?list=PLF1Z-APd9zK7usPMx3LGMZEHrECUGodd3)
 
@@ -31,4 +30,4 @@ I thoroughly enjoyed wwatching Professor Graham Hutton lecture series on Functio
 
 **Recommended Books**
 
-* [Programming in Haskell by Graham Hutton] (https://books.google.nl/books/about/Programming_in_Haskell.html?id=75C5DAAAQBAJ&printsec=frontcover&source=kp_read_button&hl=en&redir_esc=y#v=onepage&q&f=false)
+* [Programming in Haskell by Graham Hutton](https://books.google.nl/books/about/Programming_in_Haskell.html?id=75C5DAAAQBAJ&printsec=frontcover&source=kp_read_button&hl=en&redir_esc=y#v=onepage&q&f=false)
