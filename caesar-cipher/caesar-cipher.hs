@@ -1,4 +1,4 @@
-{- Consider the problem of encoding a string using caesar cipher. Write a program to crack a given string that is enconded using the caesar's cipher-}
+{- Consider the problem of encoding a string using caesar cipher. Write a program to crack a given string encoded using the caesar's cipher -}
 
 module CaesarCipher where
 
