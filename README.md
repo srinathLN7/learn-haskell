@@ -21,10 +21,10 @@ I thoroughly enjoyed watching Professor Graham Hutton lecture series on Function
 
 
 **Other Useful Links**
-
-* [Haskell for Imperative Programmers](https://www.youtube.com/watch?v=5b-YG558ft8&list=PLw2QsPIp2pxtkNQRvnOlV2xFkrQ8mPqAb)
  
-* [Quick start - Learn Hands on](https://www.youtube.com/channel/UC3xdLFFsqG701QAyGJIPT1g/playlists)
+* [Quick start - Learn Hands on](https://www.youtube.com/watch?v=5b-YG558ft8&list=PLw2QsPIp2pxtkNQRvnOlV2xFkrQ8mPqAb)
+
+* [Haskell for Imperative Programmers](https://www.youtube.com/channel/UC3xdLFFsqG701QAyGJIPT1g/playlists)
 
  
 
