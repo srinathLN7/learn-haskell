@@ -1,3 +1,4 @@
+import Text.Read
 
 main :: IO ()
 main = putStrLn "Hello World!!"
@@ -14,3 +15,5 @@ concatStr = getLine >>= \x ->
             getLine >>= \y -> 
             putStrLn $ x ++ " "  ++ y     
 
+
+ 
