@@ -2,7 +2,7 @@
 
 This repository is a collection of the list of haskell programs and lecture notes written during my adventure in learning haskell - a lazy, statically typed, pure functional programming language used to develop smart contracts in the [cardano](https://docs.cardano.org/) blockchain. Being a firm believer of the philosophy "Less is more" when it comes to programming, the more I learn haskell, the more I fall in love with its simplicity and elegance. Haskell makes me go "Wowwwwww!" 
 
-**What about you? Do you like writing 1000's of lines of code that doing 1 thing or 1 line of code doing 1000 things?** 
+**What about you? Do you like writing 1000's of lines of code doing 1 thing or 1 line of code doing 1000 things?** 
 
 
 ## Recommended Video Lectures and Tutorials
