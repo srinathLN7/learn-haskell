@@ -1,27 +1,34 @@
-# Practice Haskell for the Cardano Plutus Pioneer Program.
+# Learn Haskell for Plutus - Cardano
 
-This repository is a collection of the list of haskell programs and lecture notes written during my adventure in learning haskell. Personally, Haskell makes me go "Awwwwww!". What about you? 
+This repository is a collection of the list of haskell programs and lecture notes written during my adventure in learning haskell - a language used to develop smart contracts in the [cardano blockchain](https://docs.cardano.org/). The more you learn haskell, the more you fall in love with its simplicity and elegance. Being a firm believer of the philosophy "Less is more" when it comes to programming, 
+Haskell makes me go "Wowwwwww!" 
 
+**What about you? Do you like writing 1000's of lines of code or 1 line that does 1000 things?** 
 
 
 ## Recommended Video Lectures and Tutorials
 
 **Prof. Graham Huttom Lecture Series - Highly Recommended**
 
-1) Functional Programming: https://www.youtube.com/playlist?list=PLF1Z-APd9zK7usPMx3LGMZEHrECUGodd3
+I thoroughly enjoyed wwatching Professor Graham Hutton lecture series on Functional programming in Haskell. 
 
-2) Advanced Functional Programming: https://www.youtube.com/playlist?list=PLF1Z-APd9zK5uFc8FKr_di9bfsYv8-lbc
+* [Functional Programming](https://www.youtube.com/playlist?list=PLF1Z-APd9zK7usPMx3LGMZEHrECUGodd3)
 
-3) ComputerPhile videos
+* [Advanced Functional Programming](https://www.youtube.com/playlist?list=PLF1Z-APd9zK5uFc8FKr_di9bfsYv8-lbc)
+
+* ComputerPhile videos
     * Monads: https://www.youtube.com/watch?v=t1e8gqXLbsU
+    * Lambda Calculus: https://www.youtube.com/watch?v=eis11j_iGMs&t=468s
 
 
 **Other Useful Links**
 
-1) Haskell for Imperative Programmers:  https://www.youtube.com/watch?v=5b-YG558ft8&list=PLw2QsPIp2pxtkNQRvnOlV2xFkrQ8mPqAb
+* [Haskell for Imperative Programmers](https://www.youtube.com/watch?v=5b-YG558ft8&list=PLw2QsPIp2pxtkNQRvnOlV2xFkrQ8mPqAb)
  
-2) Get started quick - Hands on: https://www.youtube.com/channel/UC3xdLFFsqG701QAyGJIPT1g/playlists
+* [Quick start - Learn Hands on](https://www.youtube.com/channel/UC3xdLFFsqG701QAyGJIPT1g/playlists)
 
  
 
+**Recommended Books**
 
+* [Programming in Haskell by Graham Hutton] (https://books.google.nl/books/about/Programming_in_Haskell.html?id=75C5DAAAQBAJ&printsec=frontcover&source=kp_read_button&hl=en&redir_esc=y#v=onepage&q&f=false)
