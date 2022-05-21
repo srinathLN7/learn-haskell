@@ -96,6 +96,7 @@ rotate :: Int -> [a] -> [a]
 rotate n xs = drop n xs ++ take n xs 
 
 
+-- crackL decodes the given encoded string by first converting the string to all lower case letters
 crackL :: String -> String
 crackL xs = encode (-factor) xsl
            where 
@@ -114,8 +115,7 @@ positionsUp ::  String -> [Int]
 positionsUp  xs = [i | (x, i)  <- zip xs [0 ..], isAsciiUpper x]
 
 
---  CRACK function
--- decodes the potential original string with the given encoded string
+--  CRACK function decodes the potential original string with the given encoded string
 
 crack :: String -> String
 crack xs = uppercaseAt (positionsUp xs) $ crackL xs     
