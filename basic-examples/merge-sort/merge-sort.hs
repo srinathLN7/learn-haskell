@@ -13,7 +13,7 @@ halve :: [a] -> ([a],[a])
 halve xs =  splitAt (length xs `div` 2) xs                         
 
 -- MERGE SORT - Recurrsively sort the the two lists and merge these two sorted lists using the merge function
--- Adding condition on line 21 - makes the performance pretty paster 
+-- Adding condition on line 19 - makes the performance pretty paster 
 msort :: Ord a => [a] -> [a]
 msort [] = []
 msort [x] = [x]
