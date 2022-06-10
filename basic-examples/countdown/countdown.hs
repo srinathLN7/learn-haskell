@@ -1,7 +1,6 @@
 module CountDown where 
 
 --- Defining all possible operators
---data Op = Add | Sub | Mul | Div | Exp
 data Op = Add | Sub | Mul | Div |Exp   
 
 -- Make the Op datatype instance of show so that it can be printed on the screen
@@ -24,11 +23,10 @@ instance Eq Op where
 -- Define valid operations
 valid :: Op -> Int -> Int -> Bool
 valid Add x y = x<= y 
-valid sub x y = x > y
-valid Mul x y = x/= 1 && y /=1 && x<= y 
-valid Div x y = y/= 1 && x `mod` y == 0 
+valid Sub x y = x > y
+valid Mul x y = x /= 1 && y /= 1 && x <= y
+valid Div x y =  y/= 0 && y /= 1 && x `mod` y == 0
 valid Exp x y =  x /= 1 && y > 1
-
 
 -- apply a given operator to the two integers
 apply :: Op -> Int -> Int -> Int
@@ -94,7 +92,7 @@ ops :: [Op]
 ops =[Add, Sub, Mul, Div, Exp]
 
 combine :: Result -> Result -> [Result]
-combine (lexpr, x) (rexpr, y)  =  [(App o lexpr rexpr , apply o x y ) | o <- ops, valid o x y, y >0]
+combine (lexpr, x) (rexpr, y)  =  [(App o lexpr rexpr , apply o x y ) | o <- ops, valid o x y]
 
 results :: [Int] -> [Result]
 results [] = []
@@ -110,5 +108,9 @@ solutions :: [Int] -> Int -> [Expr]
 solutions list target = [ expr | ls <- choices list, (expr, value) <- results ls, value == target]
 
 
+sol :: [Expr]
+sol = solutions [1,3,7,10,25,50] 765
+
 main :: IO ()
-main = print (solutions [1,3,7,10,25,50] 765)
+main = do print sol 
+          print (length sol)   
