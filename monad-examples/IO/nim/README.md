@@ -1,8 +1,8 @@
-# NIM
+# Nim
 
 Nim -> Remove stars at end of single row. Player that empties the board first wins.
 
-##Output
+### Output
 
 
 ```
