@@ -9,7 +9,6 @@ module Functors where
 class Functors f where
     fmaps :: (a -> b) -> f a -> f b
 
-
 {-  
 Common instances of the Functors classes 
 1. List
@@ -50,7 +49,7 @@ instance Functors Tree where
 instance Functors IO where
     -- fmaps :: (a -> b) -> IO a -> I) b
     fmaps g mx = do {x <- mx; return (g x)} 
-                    -- g <$> mx
+                    -- g <$> mx 
 
 
 -- A generic increment functor which would work for all parametric types
