@@ -31,7 +31,7 @@ Node (Leaf 2) (Leaf 3)
 ```
 
 # Applicative
-Since class `Applicative` is already defined in the prelude module, we rewrite the same definition using class Applicative to avoid ambiguous errors
+Since class `Applicative` is already defined in the prelude module, we rewrite the same definition using class Applicative to avoid ambiguous errors.
 Hence in this module `Applicatives === Applicative`  
 
 ### Output

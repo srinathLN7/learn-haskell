@@ -44,6 +44,12 @@ wins gs p = any line (rows ++ cols ++ diags)
                 diags = [diag gs , diag (map reverse gs)]
  
 
+-- My version of transpose function for a matrix with size m * n
+transpose' :: [[a]] -> [[a]]
+transpose' xss = chop nrows [xs !! (j-1) | i <- [1..ncols], j <- take nrows [i, i+ncols ..]] 
+                where nrows = length  xss
+                      ncols = length(head xss) 
+                      xs = concat xss  
 
 diag :: Grid -> [Player]
 diag gs = [gs !! n !! n | n <- [0.. size-1]]
