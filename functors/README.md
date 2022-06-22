@@ -29,3 +29,34 @@ Just 2
 Node (Leaf 2) (Leaf 3)
 *Functors> 
 ```
+
+# Applicative
+Since class `Applicative` is already defined in the prelude module, we rewrite the same definition using class Applicative to avoid ambiguous errors
+Hence in this module `Applicatives === Applicative`  
+
+### Output
+```
+GHCi, version 8.10.7: https://www.haskell.org/ghc/  :? for help
+Prelude> :l Applicatives.hs 
+[1 of 2] Compiling Functors         ( Functors.hs, interpreted )
+[2 of 2] Compiling Applicatives     ( Applicatives.hs, interpreted )
+Ok, two modules loaded.
+*Applicatives> Applicatives.pure (+1)  Applicatives.<*> Just 1
+Just 2
+*Applicatives> Applicatives.pure (+)  Applicatives.<*> Just 1 Applicatives.<*> Just 2
+Just 3
+*Applicatives> Applicatives.pure (+)  Applicatives.<*> Nothing  Applicatives.<*> Just 2
+Nothing
+*Applicatives> Applicatives.pure (+1)  Applicatives.<*> [1,2,3]
+[2,3,4]
+*Applicatives> Applicatives.pure (+)  Applicatives.<*> [1] Applicatives.<*> [2]
+[3]
+*Applicatives> Applicatives.pure (*)  Applicatives.<*> [1,2] Applicatives.<*> [3,4]
+[3,4,6,8]
+*Applicatives> prods [1,2] [3,4]
+[3,4,6,8]
+*Applicatives> getChars 7
+srinath"srinath"
+*Applicatives> 
+```
+
