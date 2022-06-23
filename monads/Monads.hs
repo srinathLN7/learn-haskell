@@ -1,7 +1,9 @@
 module Monads where
 
+--- Monads reduce boilerplate code needed for common operations (such as dealing with undefined values or fallible functions, or encapsulating bookkeeping code). 
+--- Haskell use monads to turn complicated sequences of functions into succinct pipelines that abstract away control flow, and side-effects
 
----  Need for Monads
+---  Consider this example 
 
 data Expr = Val Int | Div Expr Expr
 
@@ -65,8 +67,8 @@ safeEvalM' (Div x y)  = do  m <- safeEvalM' x
 
 
 -- Monad class definition - To avoid ambiguous error from Prelude module
---- Monads === Monad; returns === return 
-
+--- Monads === Monad; returns === return; 
+--- bindop === (>>=) 
 class Applicative m => Monads m where
     returns :: a -> m a
     bindop :: m a -> (a -> m b) -> m b 
@@ -90,18 +92,13 @@ instance Monads [] where
 
 
 -- compute the product of two list using monadic style compuation
+-- prodsM === prodsM' 
 
 prodsM :: Num a => [a] -> [a] -> [a]
 prodsM xs ys = do  x <- xs 
                    y <- ys
                    returns (x*y)
   
---     |
---     v
---- (====)
---     |
---     v
-
 prodsM' :: Num a => [a] -> [a] -> [a]
 prodsM' xs ys = xs `bindop` \ x -> 
                 ys `bindop` \ y ->
