@@ -23,6 +23,20 @@ Node (Node (Leaf 'a') (Leaf 'b')) (Leaf 'c')
 Node (Node (Leaf 0) (Leaf 1)) (Leaf 2)
 *Monads> fst (app (mlabel tree) 0)
 Node (Node (Leaf 0) (Leaf 1)) (Leaf 2)
+*Monads> mapM' conv "1234"
+Just [1,2,3,4]
+*Monads> mapM' conv "123a"
+Nothing
+*Monads> filterM' (\ x -> [True, False]) [1,2,3]
+[[1,2,3],[1,2],[1,3],[1],[2,3],[2],[3],[]]
+*Monads> join [[1,2],[3,4],[5,6,7]]
+[1,2,3,4,5,6,7]
+*Monads> join (Just (Just 1))
+Just 1
+*Monads> join (Just Nothing)
+Nothing
+*Monads> join Nothing
+Nothing
 *Monads> 
 ```
 

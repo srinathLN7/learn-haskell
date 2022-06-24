@@ -1,4 +1,5 @@
 module Monads where
+import Data.Char
 
 --- Monads reduce boilerplate code needed for common operations (such as dealing with undefined values or fallible functions, or encapsulating bookkeeping code). 
 --- Haskell use monads to turn complicated sequences of functions into succinct pipelines that abstract away control flow, and side-effects
@@ -188,7 +189,46 @@ mlabel (Node l r) = do  l' <- mlabel l
                         return (Node l' r')                      
 
 
--- To test the example
+-- To test the above, let us define an example tree
 
 tree :: Tree Char 
 tree = Node (Node (Leaf 'a') (Leaf 'b')) (Leaf 'c')
+
+
+--- GENERIC MONADIC FUNCTIONS
+
+-- mapM === mapM' 
+
+mapM' :: Monad m => (a -> m b) -> [a] -> m [b]
+mapM' _ [] = return []
+mapM' mf (x:xs) = do  y <- mf x
+                      ys <- mapM' mf xs
+                      return (y:ys)    
+
+
+conv :: Char -> Maybe Int
+conv ch | isDigit ch = Just (digitToInt ch)
+        | otherwise = Nothing    
+
+
+
+filterM' :: Monad m => (a -> m Bool) -> [a] -> m [a]
+filterM' _ [] = return []
+filterM' mp (x:xs) = do p <- mp x
+                        ys <- filterM' mp xs
+                        return (if p then x:ys else ys)
+
+
+join :: Monad m => m (m a) -> m a
+join mmx = do  mx <- mmx
+               x  <- mx
+               return x
+
+
+
+
+----- MONAD LAWS 
+
+-- return x >>= f = f x 
+-- mx >>= return = m x  
+-- (mx >>= f) >>= g = mx >>= (\ x -> (f x >>= g)) 
