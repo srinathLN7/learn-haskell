@@ -102,4 +102,93 @@ prodsM xs ys = do  x <- xs
 prodsM' :: Num a => [a] -> [a] -> [a]
 prodsM' xs ys = xs `bindop` \ x -> 
                 ys `bindop` \ y ->
-                returns (x*y)    
+                returns (x*y)
+
+
+---- THE STATE MONAD EXAMPLE
+
+type State = Int 
+
+-- To make a state transformer an instance of a monad class - we need to use data or newtype since `type` cannot be made into instances
+newtype ST a = S (State -> (a, State))
+
+-- char -> ST Int === char -> State -> (Int, State)
+
+-- define a function app to extract the values alone from the state transformer 
+app :: ST a -> State -> (a, State)
+app (S st)  = st 
+
+-- make ST an instance of Functor class 
+instance Functor ST where
+    -- fmap :: (a -> b) -> ST a -> ST b
+    fmap f st =  S (\ s -> let (x, s') =  app st s in (f x, s')) 
+
+-- fmap lets us apply the function 'f' to the result value of the state transformer 'st' with initial state s
+
+-- make ST an instance of Applicative
+instance Applicative ST where 
+    -- pure :: a -> ST a
+    pure x = S (\ s -> (x, s)) 
+
+    -- (<*>) :: ST (a -> b) -> ST a -> ST b
+    stf <*> stx = S (\s -> let  (f, s') = app stf s  
+                                (x, s'') = app stx s'
+                                in (f x , s'') ) 
+
+
+
+-- make ST an instance of the Monad class
+
+instance Monad ST where
+    -- (>>=) :: ST a -> (a -> ST b) -> ST b 
+    stx >>= f = S (\ s -> let (x, s') = app stx s  
+                               in app (f x) s')
+
+--    stx >>= f = do  x <- stx
+--                    f x  
+
+
+-- Application of the STATE MONAD example
+-- Relabelling trees with a unique integer at every leaf 
+
+data Tree a = Leaf a | Node (Tree a) (Tree a)  deriving Show
+
+
+-- We could define a pure function say rlabel :: Tree Int -> Int -> (Tree Int , Int)
+-- A simpler way to do this is to use the state monads
+
+-- newtype ST (Tree Int) = S (Int -> (Tree Int, Int))
+-- rlabel :: Tree Int -> ST (Tree Int)
+
+
+-- fresh returns the current state as the result value and updates the state by incrementing the current state
+fresh :: ST Int 
+fresh = S (\n -> (n , n+1))
+
+-- ST is an applicative functor
+-- <*> :: ST (a -> b) -> ST a -> ST b
+
+alabel :: Tree a -> ST (Tree Int)
+alabel (Leaf _) = Leaf <$> fresh
+alabel (Node l r) = Node <$> alabel l <*> alabel r    
+
+
+-- ST is an monad
+-- (>>=) :: ST a -> (a -> ST b) -> ST b
+-- Leaf :: a -> Tree a 
+-- Node :: Tree a -> Tree a -> Tree a
+-- (>>=) :: ST a -> (a -> ST (Tree Int)) -> ST (Tree Int)    
+
+mlabel :: Tree a -> ST (Tree Int)
+mlabel (Leaf _) = do  n <- fresh
+                      return (Leaf n)
+
+mlabel (Node l r) = do  l' <- mlabel l
+                        r' <- mlabel r
+                        return (Node l' r')                      
+
+
+-- To test the example
+
+tree :: Tree Char 
+tree = Node (Node (Leaf 'a') (Leaf 'b')) (Leaf 'c')
