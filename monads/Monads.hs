@@ -120,11 +120,14 @@ app :: ST a -> State -> (a, State)
 app (S st)  = st 
 
 -- make ST an instance of Functor class 
+-- fmap lets us apply the function 'f' to the result value of the state transformer 'st' with initial state s
 instance Functor ST where
     -- fmap :: (a -> b) -> ST a -> ST b
     fmap f st =  S (\ s -> let (x, s') =  app st s in (f x, s')) 
 
--- fmap lets us apply the function 'f' to the result value of the state transformer 'st' with initial state s
+    -- defining fmap in terms of monad definition 
+    -- fmap g st = do x <- st 
+    --                return (g x)  
 
 -- make ST an instance of Applicative
 instance Applicative ST where 
@@ -136,7 +139,10 @@ instance Applicative ST where
                                 (x, s'') = app stx s'
                                 in (f x , s'') ) 
 
-
+    -- defining (<*>) in terms of monad definition
+    -- stf <*> stx = do f <- stf
+    --                  x <- stx 
+    --                  return (f x)
 
 -- make ST an instance of the Monad class
 
@@ -232,3 +238,5 @@ join mmx = do  mx <- mmx
 -- return x >>= f = f x 
 -- mx >>= return = m x  
 -- (mx >>= f) >>= g = mx >>= (\ x -> (f x >>= g)) 
+
+
