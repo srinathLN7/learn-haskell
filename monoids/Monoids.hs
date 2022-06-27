@@ -36,8 +36,8 @@ instance Monoids a => Monoids (Maybe a) where
  memptys = Nothing
 
  -- mappends :: Maybe a -> Maybe a -> Maybe a 
- Nothing `mappends` _ = Nothing
- _ `mappends` Nothing = Nothing
+ Nothing `mappends` my = my
+ mx `mappends` Nothing = mx
  Just x `mappends` Just y = Just (x `mappends` y) 
 
 
