@@ -71,7 +71,7 @@ instance Num b => Monoids (Mult b) where
 
 
 -- And operator as Monoid class
--- c :: All c -> Bool 
+-- c :: All -> Bool 
 
 newtype All = All {c ::Bool} deriving (Show, Read)  
 
@@ -84,7 +84,7 @@ instance Monoids All where
 
 
 -- Or operator as Monoid class
--- d :: Any d -> Bool 
+-- d :: Any -> Bool 
 
 newtype Any  = Any {d :: Bool} deriving (Show, Read)
 
