@@ -20,12 +20,11 @@ I thoroughly enjoyed watching Professor Graham Hutton lecture series on Function
     * [Lambda Calculus](https://www.youtube.com/watch?v=eis11j_iGMs&t=468s)
 
 
-**Other Useful Links**
- 
-* [Quick start - Learn Hands on](https://www.youtube.com/watch?v=5b-YG558ft8&list=PLw2QsPIp2pxtkNQRvnOlV2xFkrQ8mPqAb)
+**Other Materials**
 
 * [Haskell for Imperative Programmers](https://www.youtube.com/channel/UC3xdLFFsqG701QAyGJIPT1g/playlists)
-
+ 
+* [Quick start - Learn Hands on](https://www.youtube.com/watch?v=5b-YG558ft8&list=PLw2QsPIp2pxtkNQRvnOlV2xFkrQ8mPqAb)
  
 
 **Recommended Books**
