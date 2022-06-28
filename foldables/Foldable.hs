@@ -10,6 +10,7 @@ class Foldables t where
     foldMap :: Monoids b => (a -> b) -> t a -> b 
     foldr :: (a -> b -> b) -> b -> t a -> b 
     foldl :: (a -> b -> a) -> a -> t b -> a
+    
 
 
 
@@ -56,7 +57,46 @@ instance Foldables Tree where
     foldl f v (Node l r) = foldl f (foldl f v l) r  
 
 
+
+
     -- Example to test this binary tree
 
 tree :: Tree Int 
 tree = Node (Node (Leaf 1) (Leaf 2)) (Leaf 3)    
+
+
+-- Define map in terms of foldr 
+
+map' :: (a -> b) -> [a] -> [b]
+map' f  = let g = ((:).f) in foldr g [] 
+
+-- define fmap in terms of foldr
+-- foldMap :: Monoids b => (a -> b) -> t a -> b 
+-- foldMap f = foldr (mappends. f) memptys
+
+
+average :: Foldable t => t Int -> Int  
+average xs = sum xs `div` length xs
+
+
+-- define `and` operator for a generic foldable data structure  in terms of the `All` monoid
+-- newtype All = All {c ::Bool}
+and :: Foldables t => t Bool -> Bool 
+and = c. foldMap All
+
+-- define `or` operator for a generic foldable data structure  in terms of the `Any` monoid
+-- newtype Any  = Any {d :: Bool} 
+or :: Foldables t => t Bool -> Bool 
+or = d. foldMap Any 
+
+
+-- check if all elements in a generic foldable data structure satisifies a predicate
+-- newtype All = All {c ::Bool}
+all :: Foldables t => (a -> Bool) -> t a -> Bool 
+all p = c. foldMap (All. p)
+
+
+-- check if all elements in a generic foldable data structure satisifies a predicate
+-- newtype Any = Any {d ::Bool}
+any :: Foldables t => (a -> Bool) -> t a -> Bool 
+any p = d. foldMap (Any. p)
