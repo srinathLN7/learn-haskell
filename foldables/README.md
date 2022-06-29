@@ -21,5 +21,15 @@ Node (Node (Leaf 1) (Leaf 2)) (Leaf 3)
 6
 *Monoids.Foldables> foldl (+) 0 tree
 6
+*Monoids.Foldables> Monoids.Foldables.and [True, False, True]
+False
+*Monoids.Foldables> Monoids.Foldables.or [False, False, False]
+False
+*Monoids.Foldables> Monoids.Foldables.or [False, False, True]
+True
+*Monoids.Foldables> Monoids.Foldables.and [True, True, True]
+True
+*Monoids.Foldables> average [1..10]
+5
 *Monoids.Foldables>  
 ```
