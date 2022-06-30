@@ -96,5 +96,30 @@ instance Monoids Any  where
     Any x `mappends` Any y =  Any (x || y) 
 
 
+-- Make a pair (a,b) in to Monoids
+-- a and b are Monoids
+instance (Monoids e, Monoids f) => Monoids (e,f) where
+    -- memptys :: (e,f)
+    memptys = (memptys,memptys)
+
+    -- mappends :: (e, f) -> (e, f) -> (e, f)
+    (x1, y1) `mappends` (x2, y2) = (x1 `mappends` x2 , y1 `mappends` y2)
+
+
+-- Make (a -> b) into a Monoid
+-- b is a monoid 
+instance Monoids b => Monoids (a -> b) where
+    -- memptys :: (a -> b)
+       memptys = \ _ -> memptys    
+
+    -- mappends :: (a -> b) -> (a -> b) -> (a -> b)
+       g1 `mappends` g2 = \ x -> g1 x `mappends` g2 x 
+
+
+
+
+
+
+
 --  mappends -> infix notation <>
 -- x <> y = x `mappends` y

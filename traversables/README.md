@@ -16,6 +16,6 @@ Just (Node (Leaf 0) (Leaf 1))
 Nothing
 *Traversables> Traversables.sequenceA (Node (Leaf (Just 1)) (Leaf (Just 2)))
 Just (Node (Leaf 1) (Leaf 2))
-*Traversables> Traversables.sequenceA (Node (Leaf (Just 0)) (Leaf (Just 1)))
-Just (Node (Leaf 0) (Leaf 1))
+*Traversables> Traversables.sequenceA (Node (Leaf (Just 0)) (Leaf (Nothing)))
+Nothing
 ```

@@ -25,6 +25,7 @@ instance Functor Tree where
     -- fmaps :: (a -> b) -> Tree a -> Tree b
     fmap g (Leaf x) = Leaf (g x)
     fmap g (Node l r) = Node (fmap g l) (fmap g r)
+    
 instance Foldable Tree where 
      -- foldMap :: Monoids b => (a -> b) -> Tree a -> b 
     foldMap f (Leaf x) = f x 

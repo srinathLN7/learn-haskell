@@ -1,5 +1,5 @@
 module Monoids.Foldables where
-import Prelude hiding (foldMap, foldr, foldl)
+import Prelude hiding (Maybe, Nothing, Just, foldMap, foldr, foldl)
 import Monoids 
 
 -- To avoid ambiguous error from the Haskell prelude module 
@@ -12,8 +12,7 @@ class Foldables t where
     foldl :: (a -> b -> a) -> a -> t b -> a
     
 
-
-
+-- List as foldables    
 instance Foldables [] where
     -- fold :: Monoids a => [a] -> a 
     fold [] = memptys
@@ -33,6 +32,26 @@ instance Foldables [] where
     foldl _ v [] = v
     foldl f v (x:xs) = foldl f (f v x) xs
 
+
+-- Maybe as Foldables
+
+data Maybe a = Nothing | Just a 
+instance Foldables Maybe where 
+    -- fold :: Monoid a => Maybe a -> a 
+        fold Nothing = memptys  
+        fold (Just x) = x 
+
+    -- foldMap :: Monoid b => (a -> b) -> Maybe a -> b
+        foldMap _ Nothing = memptys  
+        foldMap g (Just x) = g x   
+
+    -- foldr :: (a -> b -> b) -> b -> Maybe a -> b
+        foldr _ v Nothing =  v 
+        foldr g v (Just x) = g x (foldr g v (Just x))
+
+    -- foldl :: (a -> b -> a) -> a -> Maybe b -> a
+        foldl _ v Nothing = v 
+        foldl g v (Just x) = foldl g (g v x) (Just x)
 
 -- Defining a foldable binary tree
 data Tree a = Leaf a | Node (Tree a) (Tree a) deriving Show
