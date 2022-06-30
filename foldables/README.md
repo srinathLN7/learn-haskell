@@ -31,5 +31,8 @@ True
 True
 *Monoids.Foldables> average [1..10]
 5
-*Monoids.Foldables>  
+*Monoids.Foldables> filterF (even) [1..10]
+[2,4,6,8,10]
+*Monoids.Foldables> filterF (even) (Node (Node (Leaf 1) (Leaf 2)) (Leaf 3))
+[2] 
 ```

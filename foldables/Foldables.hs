@@ -75,23 +75,23 @@ instance Foldables Tree where
     foldl f v (Leaf x) = f v x
     foldl f v (Node l r) = foldl f (foldl f v l) r  
 
-
-
-
     -- Example to test this binary tree
-
 tree :: Tree Int 
 tree = Node (Node (Leaf 1) (Leaf 2)) (Leaf 3)    
 
-
 -- Define map in terms of foldr 
-
 map' :: (a -> b) -> [a] -> [b]
-map' f  = let g = ((:).f) in foldr g [] 
+map' f  = foldr ((:).f) [] 
 
--- define fmap in terms of foldr
--- foldMap :: Monoids b => (a -> b) -> t a -> b 
--- foldMap f = foldr (mappends. f) memptys
+-- Generic function of the filter function working with any foldable type
+-- filter :: (a -> Bool) -> [a] -> [a] 
+-- foldMap :: Monoid b => (a -> b) -> t a -> b
+
+filterF :: Foldables t => (a -> Bool) -> t a -> [a]
+filterF p = foldMap (\x -> if p x then [x] else [])
+
+-- toList :: t a -> [a]
+-- filterF p ta = filter p (toList ta)
 
 
 average :: Foldable t => t Int -> Int  
@@ -119,3 +119,8 @@ all p = c. foldMap (All. p)
 -- newtype Any = Any {d ::Bool}
 any :: Foldables t => (a -> Bool) -> t a -> Bool 
 any p = d. foldMap (Any. p)
+
+
+-- define fmap in terms of foldr
+-- foldMap :: Monoids b => (a -> b) -> t a -> b 
+-- foldMap f = foldr (mappends. f) memptys
