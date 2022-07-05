@@ -9,6 +9,7 @@ data Writer a = Writer a [String] deriving Show
 number :: Int -> Writer Int 
 number n = Writer n ["number: " ++ show n]
 
+-- Explicit accumulation of logs are required
 foo :: Writer Int -> Writer Int -> Writer Int -> Writer Int 
 foo (Writer a as) (Writer b bs) (Writer c cs) = Writer (a+b+c) $ as ++ bs ++ cs 
 -- During  run time call foo (number 7) (number 1) (number 3)
@@ -21,6 +22,8 @@ foo (Writer a as) (Writer b bs) (Writer c cs) = Writer (a+b+c) $ as ++ bs ++ cs
 tell :: [String] -> Writer ()
 tell  = Writer () -- tell str = Writer () str
 
+
+-- Explicit accumulation of logs are required
 foo' :: Writer Int -> Writer Int -> Writer Int -> Writer Int
 foo' (Writer a as) (Writer b bs) (Writer c cs) =
      let 
@@ -37,13 +40,24 @@ bindWriter (Writer x xs) f =
       in 
           Writer y $ xs ++ ys 
 
+-- No explicit accumulation of logs are required
+-- The logs are wrapped in the writer monad
 foo'' :: Writer Int -> Writer Int -> Writer Int -> Writer Int
 foo'' x y z = x `bindWriter` (\k ->
-            y `bindWriter` (\l ->
-            z `bindWriter` (\m ->
-            let s = k + l + m
-            in tell ["sum: " ++ show s] `bindWriter` (\_ ->
-               Writer s [] ))))
+              y `bindWriter` (\l ->
+              z `bindWriter` (\m ->
+              let s = k + l + m
+               in tell ["sum: " ++ show s] `bindWriter` (\_ ->
+                Writer s [] ))))
+
+-- No explicit accumulation of logs are required
+-- The logs are wrapped in the writer monad
+fooDo :: Writer Int -> Writer Int -> Writer Int -> Writer Int
+fooDo x y z =  do   k <- x
+                    l <- y
+                    m <- z
+                    let s = k+l+m in 
+                     Writer s ["sum: " ++ show s]        
 
 -- Defind the Writer type as a custom monad
 instance Functor Writer where
@@ -55,3 +69,18 @@ instance Applicative Writer where
 instance Monad Writer where
     return a = Writer a []
     (>>=) = bindWriter
+
+
+-- Examples
+
+x :: Writer Int
+x = foo (number 1) (number 2) (number 3)
+
+y :: Writer Int
+y = foo' (number 1) (number 2) (number 3)
+
+z :: Writer Int
+z = foo'' (number 1) (number 2) (number 3)
+
+z' :: Writer Int
+z' = fooDo (number 1) (number 2) (number 3)
