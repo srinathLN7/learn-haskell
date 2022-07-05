@@ -31,7 +31,6 @@ foo' xs ys zs = readEither' xs `bindEither` \k ->
                 Right $ k + l+ m
 
 --Using prefix notation
--- Using prefix notation
 fooPrefix' :: String -> String -> String -> Either String Int
 fooPrefix' xs ys zs = bindEither (readEither' xs :: Either String Int) (\k ->
                       bindEither (readEither' ys :: Either String Int) (\l ->
