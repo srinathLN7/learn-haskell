@@ -1,4 +1,4 @@
-module MonadTransformers where
+module Example where
 import Text.Read (readMaybe)
 
 -- MaybeIO captures the effect of Maybe inside IO monad
@@ -67,8 +67,7 @@ readLine = do
               MaybeIO $ return $ readMaybe str 
 
 
-
 computation :: MaybeIO ()
-computation = do a <- readLine  
+computation = do a <- readLine 
                  b <- readLine
                  liftIOToMaybeIO $ print $ show (a + b)   

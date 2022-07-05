@@ -41,8 +41,8 @@ dec :: Int -> Maybe Int
 dec n = if n >0 then Just (n-1) else Nothing
 
 
-mapM :: (Traversables t ,Monad m) => (a -> m b) -> t a -> m (t b)
+mapM :: (Traversables t, Monad m) => (a -> m b) -> t a -> m (t b)
 mapM = traverses
 
-sequenceM :: (Traversables t ,Monad m) => t (m a) -> m (t a)
+sequenceM :: (Traversables t, Monad m) => t (m a) -> m (t a)
 sequenceM = Traversables.sequenceA 
