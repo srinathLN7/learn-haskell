@@ -71,3 +71,7 @@ computation :: MaybeIO ()
 computation = do a <- readLine 
                  b <- readLine
                  liftIOToMaybeIO $ print $ show (a + b)   
+
+
+main :: IO ()
+main = const () <$> runMaybeIO computation

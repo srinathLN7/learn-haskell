@@ -75,3 +75,7 @@ computation :: MaybeT IO ()
 computation = do a <- readLine 
                  b <- readLine
                  lift $ print $ show (a + b)   
+
+
+main :: IO ()
+main = const () <$> runMaybeT computation
