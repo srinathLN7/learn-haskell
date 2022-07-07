@@ -57,6 +57,17 @@ Nothing
 [3,4,6,8]
 *Applicatives> getChars 7
 srinath"srinath"
-*Applicatives> 
+*Applicatives> exA
+Nothing
+*Applicatives> exB
+Nothing
+*Applicatives> exC
+Nothing
+*Applicatives> exD
+Just (Employee {name = "Srinath", phone = "0021"})
+*Applicatives> employees
+[Employee {name = "Jones", phone = "001"},Employee {name = "Jones", phone = "002"},Employee {name = "Jones", phone = "003"},Employee {name = "Sara", phone = "001"},Employee {name = "Sara", phone = "002"},Employee {name = "Sara", phone = "003"},Employee {name = "Ali", phone = "001"},Employee {name = "Ali", phone = "002"},Employee {name = "Ali", phone = "003"}] 
+*Applicatives> employeesSpecific 
+[Employee {name = "Jones", phone = "001"},Employee {name = "Sara", phone = "002"},Employee {name = "Ali", phone = "003"}]
 ```
 

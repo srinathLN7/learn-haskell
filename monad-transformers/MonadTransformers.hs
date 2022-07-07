@@ -79,3 +79,4 @@ computation = do a <- readLine
 
 main :: IO ()
 main = const () <$> runMaybeT computation
+-- main = putStrLn "Enter a number" >> readLn >>= (\ p -> putStrLn $ show (p+0))
