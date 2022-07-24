@@ -4,6 +4,10 @@ import Text.Show (Show)
 import GHC.Base (Monad)
 import Control.Monad
 
+
+
+-- EXAMPLE
+
 data Writer a = Writer a [String] deriving Show
 
 number :: Int -> Writer Int 
@@ -71,6 +75,26 @@ instance Monad Writer where
     (>>=) = bindWriter
 
 
+newtype Logger w a = Logger { runLogger :: (a, w) }
+
+instance Monoid w => Functor (Logger w) where
+  --fmap :: (a -> b) -> Logger w a -> Logger w b
+  fmap h la = let (a, w) = runLogger la in Logger (h a, w)
+
+instance Monoid w => Applicative (Logger w) where
+  pure  = return
+  (<*>) = ap
+
+instance Monoid w => Monad (Logger w) where
+  --return :: a -> Logger w a
+  return a = Logger $ (a, mempty)
+
+  -- (>>=) :: Logger w a -> (a -> Logger w b) -> Logger w b
+  la >>= k = Logger $ let (a, w1) = runLogger la; (b, w2) = runLogger (k a) in (b, w1 <> w2)
+
+tell' :: Monoid w => w -> Logger w ()
+tell' w = Logger ((), w)
+
 -- Examples
 
 x :: Writer Int
@@ -84,3 +108,13 @@ z = foo'' (number 1) (number 2) (number 3)
 
 z' :: Writer Int
 z' = fooDo (number 1) (number 2) (number 3)
+
+
+-- example :: Logger (Min Int) String 
+-- example = do
+--   tell 3
+--   tell 4
+--   tell 1
+--   tell 7
+--   return "goodbye!"
+ 
