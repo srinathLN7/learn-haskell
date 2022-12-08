@@ -1,6 +1,6 @@
 # Monoids
 
-A monoid is a set together with an associative opeartor that cobines two elements from the set, and an identity element for the operator. 
+A monoid is a set together with an associative opeartor that combines two elements from the set, and an identity element for the operator. 
 
 In mathematics, a monoid is a semi-group with an identity element.  A semi-group is an associative Magma.
 A magma represents a set `S` with closed binary opeartions i.e. the resulting operations produce the results in the same set `S`. 
