@@ -1,6 +1,6 @@
-# Monads
-Monads reduce boilerplate code needed for common operations (such as dealing with undefined values or fallible functions, or encapsulating bookkeeping code). 
-Haskell use monads to turn complicated sequences of functions into succinct pipelines that abstract away control flow, and side-effects
+# Monad
+A monad reduces boilerplate code needed for common operations (such as dealing with undefined values, fallible functions, or encapsulating book keeping code). 
+Haskell use monads to turn complicated sequences of functions into succinct pipelines that abstract away control flow, and side-effects.
 
 
 ### Output
